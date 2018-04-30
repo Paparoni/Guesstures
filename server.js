@@ -12,12 +12,12 @@ app.get('/', function(req, res) {
 
 // connects to the authentication server on firebase
 var authentication = firebase.initializeApp({
-    apiKey: // API KEY,
-    authDomain: // AUTH DOMAIN,
-    databaseURL: // DATABASE URL,
-    projectId: // PROJECT ID,
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.FIREBASE_DB_URL,
+    projectId: process.env.FIREBASE_PJ_ID,
     storageBucket: '',
-    messagingSenderId: // SENDER ID
+    messagingSenderId: process.env.FIREBASE_MESSAGING_ID
 });
 
 // Get a database reference
@@ -34,7 +34,7 @@ io.on('connection', function(socket) {
         console.log("echo");
     })
 
-    // function checks if someone is already logged in 
+    // function checks if someone is already logged in
     function isLoggedIn() {
         var user = firebase.auth().currentUser;
         if (user) {
