@@ -34,7 +34,7 @@ io.on('connection', function(socket) {
         console.log("echo");
     })
 
-    // function checks if someone is already logged in
+    // function checks if someone is already logged in 
     function isLoggedIn() {
         var user = firebase.auth().currentUser;
         if (user) {
