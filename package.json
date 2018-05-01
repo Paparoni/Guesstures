@@ -10,7 +10,7 @@
     "socket.io": "^1.7.3"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "main": "server.js",
   "devDependencies": {},
