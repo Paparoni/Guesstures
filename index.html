@@ -104,6 +104,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script>
            var socket = io();
             $('#Chatform').submit(function() {
@@ -123,53 +124,6 @@
                 }
                 window.scrollTo(0, document.body.scrollHeight);
             });
-            socket.on('not-logged-in', function() {
-                $('.login-form').css({'display':'inherit'});
-            })
-        $("#loginForm").submit(function(e) {
-                e.preventDefault();
-        });
-         function login(){
-             var loginData = {
-                 email: $("#email").val(),
-                 
-                 password: $("#password").val()
-             }
-            socket.emit('returning-user', loginData)
-            }
-            socket.on('login-error', function(msg){
-                toastr.error(msg);
-            })
-            socket.on('login-success', function(username){
-                $('.login-form').css({'display':'none'});
-                toastr.success('Successfully logged in as '+username);
-            })
-            socket.on('not-logged-in-msg', function(){
-                toastr.error("You cannot chat if you're not signed in.")
-            })
-        function callSignUp(){
-             $('.login-form').css({'display':'none'});
-             $('.signup-form').css({'display':'inherit'});
-        }
-        
-        function signup(){
-            var signUpData = {
-                email: $('#signupemail').val(),
-                
-                password: $('#signuppassword').val(),
-                
-                displayName: $('#displayname').val()
-                
-            }
-            socket.emit('new-user', signUpData);
-        }
-        socket.on('signup-error', function(error){
-            toastr.error(error);
-        })
-        socket.on('signup-success', function(){
-            toastr.success('Sign up successfully completed!')
-             $('.signup-form').css({'display':'none'});
-        })
     </script>
     
 <!-- Login Form -->
