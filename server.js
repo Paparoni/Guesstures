@@ -33,7 +33,16 @@ io.on('connection', function(socket) {
     socket.on('echo', function() {
         console.log("echo");
     })
-
+    socket.on('get-auth', function() {
+        var auth = {
+            KEY: process.env.FIREBASE_API_KEY,
+            DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
+            DBURL: process.env.FIREBASE_DB_URL,
+            PJID: process.env.FIREBASE_PJ_ID,
+            MSGSENDERID: process.env.FIREBASE_MESSAGING_ID
+        }
+        socket.emit('auth', auth);
+    }
     // function checks if someone is already logged in
     function isLoggedIn() {
         var user = firebase.auth().currentUser;
