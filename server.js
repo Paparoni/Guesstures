@@ -42,7 +42,7 @@ io.on('connection', function(socket) {
             MSGSENDERID: process.env.FIREBASE_MESSAGING_ID
         }
         socket.emit('auth', auth);
-    }
+    })
     // function checks if someone is already logged in
     function isLoggedIn() {
         var user = firebase.auth().currentUser;
