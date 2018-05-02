@@ -1,16 +1,21 @@
 //
 
   // Initialize Firebase
+socket.emit('get-auth')
+
+socket.on('auth', function(auth) {
+  
   var config = {
-    apiKey: process.env.FIREBASE_API_KEY,
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-    databaseURL: process.env.FIREBASE_DB_URL,
-    projectId: process.env.FIREBASE_PJ_ID,
+    apiKey: auth.KEY,
+    authDomain: auth.DOMAIN,
+    databaseURL: auth.DBURL,
+    projectId: auth.PJID,
     storageBucket: '',
-    messagingSenderId: process.env.FIREBASE_MESSAGING_ID
+    messagingSenderId: auth.MSGSENDERID
   };
 
   firebase.initializeApp(config);
+})
 socket.on('not-logged-in', function() {
     $('.login-form').css({
         'display': 'inherit'
