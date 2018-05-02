@@ -126,21 +126,7 @@ io.on('connection', function(socket) {
         });
     })
 
-    // Account login
-    socket.on('returning-user', function(loginData) {
-        firebase.auth().signInWithEmailAndPassword(loginData.email, loginData.password).then(function(user) {
-            socket.emit('login-success', Name());
 
-        }).catch(function(error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            if (error) {
-                socket.emit("login-error", errorMessage);
-            }
-
-        });
-
-    })
     socket.on('chat message', function(msg) {
         // when the client sends a message check if they're logged in 
         if (isLoggedIn()) {
