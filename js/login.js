@@ -14,17 +14,8 @@ function login() {
 
         password: $("#password").val()
     }
-    socket.emit('returning-user', loginData)
+    returningUser(loginData);
 }
-socket.on('login-error', function(msg) {
-    toastr.error(msg);
-})
-socket.on('login-success', function(username) {
-    $('.login-form').css({
-        'display': 'none'
-    });
-    toastr.success('Successfully logged in as ' + username);
-})
 socket.on('not-logged-in-msg', function() {
     toastr.error("You cannot chat if you're not signed in.")
 })
@@ -58,3 +49,22 @@ socket.on('signup-success', function() {
         'display': 'none'
     });
 })
+
+// Account login
+function returningUser(loginData) {
+    firebase.auth().signInWithEmailAndPassword(loginData.email, loginData.password).then(function(user) {
+        $('.login-form').css({
+            'display': 'none'
+        });
+        toastr.success('Successfully logged in as ' + username);
+
+    }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (error) {
+            toastr.error(errorMessage);
+        }
+
+    });
+
+}
