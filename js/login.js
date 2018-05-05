@@ -73,7 +73,7 @@ function returningUser(loginData) {
         $('.login-form').css({
             'display': 'none'
         });
-        toastr.success('Successfully logged in as ' + username);
+        toastr.success('Successfully logged in');
 
     }).catch(function(error) {
         var errorCode = error.code;
